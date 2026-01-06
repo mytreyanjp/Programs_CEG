@@ -1,0 +1,50 @@
+
+body {
+
+    height: 100%;
+    margin: 0;
+    background-color: #000;
+
+  }
+  
+img{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 600px;
+    transform: translateX(-50%);
+
+  }
+  #home{
+    transition: opacity 2s;
+  }
+  #bp{
+    width: 300px;
+    left:40%;
+    bottom:5%;    cursor: pointer;
+  }
+  #rp{
+    width: 300px;
+    left:60%;
+    bottom:5%;    cursor: pointer;
+  }
+  #bp:hover{
+    width:350px;
+    transition:  0.4s ease-in-out;
+}
+#rp:hover{
+    width:350px;
+    transition:  0.4s ease-in-out ;
+
+}
+#bluePage,#redPage{
+    color:white;
+    background-image: url("messi-red.jpg");
+}
+
+.page {
+    display: none;
+    padding: 20px;
+    opacity: 1; 
+    transition: opacity 1s; 
+}

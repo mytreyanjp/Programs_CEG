@@ -1,0 +1,212 @@
+<html>
+   
+    <style>
+        
+body {
+    background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+height: 78%;
+margin: 0;
+background-color: #000;
+overflow: hidden;
+text-align: center;
+}
+
+img{
+position: absolute;
+bottom: 0;
+left: 50%;
+width: 600px;
+transform: translateX(-50%);
+
+}
+#home{
+transition: opacity 1s;
+
+}
+#bp{
+width: 300px;
+left:40%;
+bottom:5%;    cursor: pointer;
+transition: width 2s;
+
+}
+#rp{
+width: 300px;
+left:60%;
+bottom:5%;    cursor: pointer;
+transition: width 2s;
+}
+
+#bp:hover{
+width:350px;
+transition:  0.3s ;
+
+}
+#rp:hover{
+width:350px;
+transition:  0.3s  ;
+
+}
+#redPage{
+color:rgb(255, 255, 255);
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+z-index: -1;
+background-image: url("oppie.png");
+font-family: 'century gothic';
+text-align: center;
+letter-spacing: 35px;
+text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.729);
+}
+#bluePage{
+color:rgba(255, 0, 195, 0.926);
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+z-index: -1;
+font-size:100px;
+background-image: url("barbie1.jpeg");
+font-family:cursive;
+text-align: center;
+letter-spacing: -15px;
+text-shadow:
+                -4px -4px 0 #fff, /* Top left border */
+                4px -4px 0 #fff,  /* Top right border */
+                -4px 4px 0 #fff,  /* Bottom left border */
+                4px 4px 0 #fff; 
+
+}
+#bluepage h1{
+    margin-right:60%;
+    margin-top:-2%;
+}
+
+
+.page {
+display:block;
+
+opacity: 1; 
+transition: opacity 1s; 
+}
+#matrix{
+    color:rgb(255, 255, 255);
+    text-align: center;
+    letter-spacing: 45px;
+    font-family:'century gothic';
+    font-weight: lighter;
+    margin-top:10%;
+    margin-left: 2%;
+}
+h1{
+    margin-top: 3%;
+    cursor: pointer;
+
+}
+
+button{
+    background-color: rgb(0, 136, 255);
+}
+        #co{
+            color:rgba(255, 255, 255, 0.304);
+    text-align: center;
+    font-family:'century gothic';
+    font-weight: lighter;
+    font-size: 13px;
+    margin-top:-15px;
+        }
+        #audioControl{
+            text-align: center;
+            display: inline-block;
+            color:white;
+            background:none;
+            border:none;
+            cursor: pointer;
+            font-size: 10px;
+            letter-spacing: 5px;
+        }
+        #audioControl:hover{
+            color:rgba(255, 255, 255, 0.697);
+        }
+        #show{
+            color:rgb(127, 0, 123);
+            font-size: 13px;
+            letter-spacing: 5px;
+
+        }
+    </style>
+    <body>
+        <audio  autoplay loop>
+            <source src="y2mate.com - clubbed to death  Matrix soundtrack.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div id="home">
+            <h1 id="matrix">MATRIX</h1>
+            <p id="co">Choose-One</p>
+            <button id="audioControl">PLAY</button>
+            <p id="show"></p>
+
+        <img src="body.png">
+        <img src="bluep2.png" id="bp" onclick="showPage('blue')">
+        <img src="redp2.png" id="rp" onclick="showPage('red')">
+    </div>
+        <div id="redPage" class="page">
+            <h1>OPPENHEIMER</h1>
+        </div>
+
+        <div id="bluePage" class="page">
+            <h1>Barbie</h1>
+        </div>
+<script>
+  function showPage(pageId) {
+            const pages = document.getElementsByClassName('page');
+            
+            for (let i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+                pages[i].style.opacity = '0'; 
+            }
+
+            const selectedPage = document.getElementById(pageId + 'Page');
+            
+            if (selectedPage) {
+                selectedPage.style.display = 'block';
+                const prepage= document.getElementById('home');
+                prepage.style.opacity='0';
+                
+                
+                setTimeout(() => { prepage.style.display = 'none'; }, 1000); 
+                setTimeout(() => { selectedPage.style.opacity = '1'; }, 2000); 
+         }
+        }
+     
+    const audio = document.querySelector('audio');
+    const audioControlButton = document.getElementById('audioControl');
+
+    audioControlButton.addEventListener('click', function() {
+     
+            audio.play();
+
+            audioControlButton.textContent = '';
+            audioControlButton.style.display="none";
+            document.getElementById("show").innerHTML="Red or Blue"
+
+        });
+
+    // Your existing showPage and other JavaScript code here
+
+
+      
+showPage('home');
+</script>  
+        </body></html>
