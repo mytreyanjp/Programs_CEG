@@ -1,0 +1,37 @@
+from math import gcd
+
+def is_prime(n):
+    if n <= 1: return False
+    if n <= 3: return True
+    if n % 2 == 0 or n % 3 == 0: return False
+    for i in range(5, int(n**0.5)+1, 6):
+        if n % i == 0 or n % (i+2) == 0:
+            return False
+    return True
+
+def prime_factors(n):
+    factors = set()
+    i = 2
+    while i * i <= n:
+        while n % i == 0:
+            factors.add(i)
+            n //= i
+        i += 1
+    if n > 1:
+        factors.add(n)
+    return factors
+
+def find_primitive_root(p):
+    if not is_prime(p):
+        return None
+    phi = p - 1
+    factors = prime_factors(phi)
+    for g in range(2, p):
+        if all(pow(g, phi // f, p) != 1 for f in factors):
+            return g
+    return None
+
+# Example usage
+prime = 31
+primitive_root = find_primitive_root(prime)
+print(f"Primitive root modulo {prime} is: {primitive_root}")
