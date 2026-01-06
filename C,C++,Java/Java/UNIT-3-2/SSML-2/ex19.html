@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech-Based To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #f0d25d; /* Gold text */
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #f0d25d; /* Gold for the heading */
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            background-color: #333; /* Dark background for input */
+            color: #f0d25d; /* Gold text */
+            border: 2px solid #f0d25d; /* Gold border */
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #f0d25d; /* Gold button */
+            color: black; /* Black text for button */
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0c04f; /* Slightly darker gold on hover */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #f0d25d; /* Gold border for tasks */
+            background-color: #333; /* Dark background for tasks */
+            color: #f0d25d; /* Gold text for tasks */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li.completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        li button {
+            padding: 5px 10px;
+            font-size: 0.9em;
+            background-color: #e0c04f; /* Lighter gold for delete button */
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+        li button:hover {
+            background-color: #f0d25d; /* Gold on hover for delete button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Speech-Based To-Do List</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter task or use voice" />
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="startVoiceInput()">🎤 Voice Input</button>
+
+    <ul id="taskList">
+        <!-- Tasks will be dynamically added here -->
+    </ul>
+
+    <script>
+        // Add a new task
+        function addTask(taskText) {
+            const taskList = document.getElementById("taskList");
+            const taskInput = document.getElementById("taskInput");
+            const taskName = taskText || taskInput.value.trim();
+            if (!taskName) {
+                alert("Please enter a task.");
+                return;
+            }
+
+            // Create a new list item
+            const taskItem = document.createElement("li");
+            taskItem.textContent = taskName;
+
+            // Add a delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = () => taskItem.remove();
+
+            // Add a mark-completed toggle on click
+            taskItem.onclick = () => taskItem.classList.toggle("completed");
+
+            // Append delete button and add task to list
+            taskItem.appendChild(deleteButton);
+            taskList.appendChild(taskItem);
+
+            // Clear the input field
+            taskInput.value = "";
+        }
+
+        // Voice input for adding tasks
+        function startVoiceInput() {
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Voice recognition is not supported in this browser. Try Chrome.");
+                return;
+            }
+
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = "en-US";
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onresult = (event) => {
+                const taskText = event.results[0][0].transcript;
+                addTask(taskText);
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                alert("There was an error with voice input. Please try again.");
+            };
+        }
+    </script>
+</body>
+</html>

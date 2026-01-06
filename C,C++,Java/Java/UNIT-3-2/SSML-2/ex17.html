@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f5d30f;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #f5d30f;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            font-size: 1em;
+            padding: 10px;
+            resize: none;
+            background-color: #333;
+            color: #f5d30f;
+            border: 1px solid #f5d30f;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #f5d30f;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e1b500;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text-to-Speech Application</h1>
+
+    <textarea id="textInput" placeholder="Enter text to read aloud..."></textarea>
+    <br>
+    <button onclick="speakText()">Read Text Aloud</button>
+
+    <script>
+        function speakText() {
+            const text = document.getElementById("textInput").value.trim();
+            if (!text) {
+                alert("Please enter some text to read aloud.");
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>

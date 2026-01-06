@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Black background */
+            color: #f5c518; /* Gold text color */
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #f5c518; /* Gold */
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2em;
+            color: #f5c518; /* Gold text */
+            background-color: #1e1e1e; /* Dark background for input */
+            border: 2px solid #f5c518; /* Gold border */
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        input:focus {
+            outline: none;
+            border-color: #d4b400; /* Lighter gold border when focused */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #1e1e1e; /* Dark gray background for list items */
+            color: #f5c518; /* Gold text */
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        li:hover {
+            background-color: #333333; /* Slightly lighter gray for hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+        li img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+            border-radius: 4px;
+        }
+        /* Mobile responsiveness */
+        @media screen and (max-width: 600px) {
+            input {
+                font-size: 1em;
+            }
+            li {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live Search</h1>
+    <input type="text" id="searchInput" placeholder="Search for movies..." />
+    <ul id="resultsList"></ul>
+
+    <script src="movie.js"></script>
+</body>
+</html>

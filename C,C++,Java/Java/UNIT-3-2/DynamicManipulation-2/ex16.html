@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Movies</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #f5d30f; /* Gold text */
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #f5d30f; /* Gold border */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5d30f;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin-right: 10px;
+            border: 1px solid #f5d30f;
+            background-color: #333;
+            color: #f5d30f;
+            font-size: 1.1em;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #f5d30f; /* Gold background */
+            color: #121212; /* Dark text */
+            border: none;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e1b500; /* Darker gold on hover */
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            padding: 10px;
+            border: 1px solid #f5d30f;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #1e1e1e; /* Dark background for each movie item */
+            border-radius: 5px;
+        }
+
+        li button {
+            background-color: #f5d30f;
+            color: #121212;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        li button:hover {
+            background-color: #e1b500;
+        }
+
+        .edit-mode input {
+            margin-right: 10px;
+            background-color: #333;
+            color: #f5d30f;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Favorite Movies List</h1>
+
+    <input type="text" id="movieInput" placeholder="Enter a movie name">
+    <button id="addMovie">Add Movie</button>
+
+    <ul id="movieList">
+        <!-- Movies will be dynamically added here -->
+    </ul>
+
+    <script>
+        $(document).ready(function() {
+            // Add a new movie
+            $('#addMovie').click(function() {
+                const movieName = $('#movieInput').val().trim();
+                if (movieName) {
+                    const movieItem = $('<li></li>').text(movieName);
+
+                    // Add edit and delete buttons
+                    const editButton = $('<button>Edit</button>').click(() => editMovie(movieItem));
+                    const deleteButton = $('<button>Delete</button>').click(() => movieItem.remove());
+
+                    movieItem.append(editButton, deleteButton);
+                    $('#movieList').append(movieItem);
+
+                    // Clear the input field
+                    $('#movieInput').val('');
+                } else {
+                    alert("Please enter a movie name.");
+                }
+            });
+
+            // Function to edit a movie
+            function editMovie(movieItem) {
+                const currentName = movieItem.contents().get(0).nodeValue.trim(); // Get current movie name
+                movieItem.empty(); // Clear the movie item
+
+                // Create an input field with the current name
+                const input = $('<input type="text">').val(currentName);
+                const saveButton = $('<button>Save</button>').click(() => {
+                    const updatedName = input.val().trim();
+                    if (updatedName) {
+                        movieItem.empty().text(updatedName); // Update movie name
+
+                        // Re-add edit and delete buttons
+                        const editButton = $('<button>Edit</button>').click(() => editMovie(movieItem));
+                        const deleteButton = $('<button>Delete</button>').click(() => movieItem.remove());
+
+                        movieItem.append(editButton, deleteButton);
+                    } else {
+                        alert("Movie name cannot be empty.");
+                    }
+                });
+
+                // Append input and save button to the movie item
+                movieItem.append(input, saveButton);
+            }
+        });
+    </script>
+</body>
+</html>

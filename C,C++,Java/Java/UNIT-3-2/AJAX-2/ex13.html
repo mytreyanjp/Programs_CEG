@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX XML Data Fetch</title>
+    <style>
+        /* Gold and black theme */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Black background */
+            color: #f5c518; /* Gold text color */
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #f5c518; /* Gold heading */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1.2em;
+            background-color: #f5c518; /* Gold button */
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #d4b400; /* Darker gold when hovering */
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #1e1e1e; /* Dark gray table background */
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5c518; /* Gold table header */
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2a2a2a; /* Darker gray rows */
+        }
+
+        tr:hover {
+            background-color: #444; /* Hover effect for rows */
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Books</h1>
+    <button onclick="fetchXML()">Load Books</button>
+    <div id="errorMessage" class="error"></div>
+
+    <table id="bookTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Book rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchXML() {
+            const errorMessage = document.getElementById('errorMessage');
+            try {
+                // Clear previous errors
+                errorMessage.textContent = "";
+
+                // Fetch the XML data
+                const response = await fetch('data.xml');
+
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, "application/xml");
+
+                // Check if there was a parsing error in the XML
+                const parserError = xml.querySelector("parsererror");
+                if (parserError) {
+                    throw new Error("Error parsing XML.");
+                }
+
+                // Get book elements from XML
+                const books = xml.getElementsByTagName("book");
+                const tableBody = document.getElementById('bookTable').getElementsByTagName('tbody')[0];
+                
+                // Clear any existing rows
+                tableBody.innerHTML = "";
+
+                // Loop through each book and create a row in the table
+                Array.from(books).forEach(book => {
+                    const title = book.getElementsByTagName("title")[0].textContent;
+                    const author = book.getElementsByTagName("author")[0].textContent;
+                    const genre = book.getElementsByTagName("genre")[0].textContent;
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${title}</td>
+                        <td>${author}</td>
+                        <td>${genre}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching or parsing XML data:", error);
+                errorMessage.textContent = `Error fetching data: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

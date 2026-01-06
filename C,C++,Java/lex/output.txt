@@ -1,0 +1,528 @@
+This is Pre-processor directive: #include <stdio.h>
+
+This is Arithmatic Operator: /
+
+This is Arithmatic Operator: /
+
+Unrecognized character:  
+
+This is Identifier: Function
+
+Unrecognized character:  
+
+This is Identifier: to
+
+Unrecognized character:  
+
+This is Identifier: calculate
+
+Unrecognized character:  
+
+This is Identifier: factorial
+
+This is Keyword:unsigned
+Unrecognized character:  
+
+This is Keyword:long
+Unrecognized character:  
+
+This is Keyword:long
+Unrecognized character:  
+
+This is Function: factorial(
+
+This is Keyword: int
+
+Unrecognized character:  
+
+This is Identifier: n
+
+This is Delimiter: )
+
+Unrecognized character:  
+
+This is Delimiter: {
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: if
+
+Unrecognized character:  
+
+This is Delimiter: (
+
+This is Identifier: n
+
+Unrecognized character:  
+
+This is Relational Operator: ==
+
+Unrecognized character:  
+
+This is Integer: 0
+
+This is Delimiter: )
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: return
+
+Unrecognized character:  
+
+This is Integer: 1
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+This is Arithmatic Operator: /
+
+This is Arithmatic Operator: /
+
+Unrecognized character:  
+
+This is Identifier: Factorial
+
+Unrecognized character:  
+
+This is Identifier: of
+
+Unrecognized character:  
+
+This is Integer: 0
+
+Unrecognized character:  
+
+This is Identifier: is
+
+Unrecognized character:  
+
+This is Integer: 1
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: else
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: return
+
+Unrecognized character:  
+
+This is Identifier: n
+
+Unrecognized character:  
+
+This is Arithmatic Operator: *
+
+Unrecognized character:  
+
+This is Function: factorial(
+
+This is Identifier: n
+
+Unrecognized character:  
+
+This is Arithmatic Operator: -
+
+Unrecognized character:  
+
+This is Integer: 1
+
+This is Delimiter: )
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+This is Arithmatic Operator: /
+
+This is Arithmatic Operator: /
+
+Unrecognized character:  
+
+This is Identifier: Recursive
+
+Unrecognized character:  
+
+This is Identifier: call
+
+This is Delimiter: }
+
+This is Keyword: int
+
+Unrecognized character:  
+
+This is Function: main(
+
+This is Delimiter: )
+
+Unrecognized character:  
+
+This is Delimiter: {
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: int
+
+Unrecognized character:  
+
+This is Identifier: number
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword:unsigned
+Unrecognized character:  
+
+This is Keyword:long
+Unrecognized character:  
+
+This is Keyword:long
+Unrecognized character:  
+
+This is Identifier: result
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Arithmatic Operator: /
+
+This is Arithmatic Operator: /
+
+Unrecognized character:  
+
+This is Identifier: User
+
+Unrecognized character:  
+
+This is Identifier: input
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Function: printf(
+
+this is String:"Enter a positive integer: "
+
+This is Delimiter: )
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Function: scanf(
+
+this is String:"%d"
+
+This is Delimiter: ,
+
+Unrecognized character:  
+
+This is Special Characters: &
+
+This is Identifier: number
+
+This is Delimiter: )
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Arithmatic Operator: /
+
+This is Arithmatic Operator: /
+
+Unrecognized character:  
+
+This is Identifier: Check
+
+Unrecognized character:  
+
+This is Keyword: if
+
+Unrecognized character:  
+
+This is Identifier: the
+
+Unrecognized character:  
+
+This is Identifier: input
+
+Unrecognized character:  
+
+This is Identifier: is
+
+Unrecognized character:  
+
+This is Identifier: valid
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: if
+
+Unrecognized character:  
+
+This is Delimiter: (
+
+This is Identifier: number
+
+Unrecognized character:  
+
+This is Relational Operator: <
+
+Unrecognized character:  
+
+This is Integer: 0
+
+This is Delimiter: )
+
+Unrecognized character:  
+
+This is Delimiter: {
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Function: printf(
+
+this is String:"Factorial is not defined for negative numbers.\n"
+
+This is Delimiter: )
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Delimiter: }
+
+Unrecognized character:  
+
+This is Keyword: else
+
+Unrecognized character:  
+
+This is Delimiter: {
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Identifier: result
+
+Unrecognized character:  
+
+This is Assignment Operator: =
+
+Unrecognized character:  
+
+This is Function: factorial(
+
+This is Identifier: number
+
+This is Delimiter: )
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Function: printf(
+
+this is String:"Factorial of %d = %llu\n"
+
+This is Delimiter: ,
+
+Unrecognized character:  
+
+This is Identifier: number
+
+This is Delimiter: ,
+
+Unrecognized character:  
+
+This is Identifier: result
+
+This is Delimiter: )
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Delimiter: }
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+Unrecognized character:  
+
+This is Keyword: return
+
+Unrecognized character:  
+
+This is Integer: 0
+
+This is Delimiter: ;
+
+Unrecognized character:  
+
+This is Arithmatic Operator: /
+
+This is Arithmatic Operator: /
+
+Unrecognized character:  
+
+This is Identifier: Exit
+
+Unrecognized character:  
+
+This is Identifier: the
+
+Unrecognized character:  
+
+This is Identifier: program
+
+This is Delimiter: }
+
+
+
+
+
+
+ Total Tokens = 119

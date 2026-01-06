@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f5c518;
+            text-align: center;
+            padding: 20px;
+        }
+        button {
+            background-color: #f5c518;
+            color: black;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #d4b400;
+        }
+        #userInfo {
+            margin-top: 20px;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #f5c518;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Get Random User</h1>
+    <button id="getUserBtn">Get Random User</button>
+
+    <div id="userInfo" style="display: none;">
+        <img id="userImage" src="" alt="User Image" width="150" height="150">
+        <h2 id="userName"></h2>
+        <p id="userLocation"></p>
+    </div>
+
+    <script>
+        // Function to fetch random user data and update the DOM
+        document.getElementById('getUserBtn').addEventListener('click', async () => {
+            // Fetch random user data from the RandomUser.me API
+            try {
+                const response = await fetch('https://randomuser.me/api/');
+                const data = await response.json();
+
+                // Get the user data from the API response
+                const user = data.results[0];
+                const userName = `${user.name.first} ${user.name.last}`;
+                const userImage = user.picture.large;
+                const userLocation = `${user.location.city}, ${user.location.country}`;
+
+                // Update the DOM with the user data
+                document.getElementById('userName').textContent = userName;
+                document.getElementById('userImage').src = userImage;
+                document.getElementById('userLocation').textContent = userLocation;
+
+                // Show the user info section
+                document.getElementById('userInfo').style.display = 'block';
+            } catch (error) {
+                console.error('Error fetching random user:', error);
+            }
+        });
+    </script>
+
+</body>
+</html>

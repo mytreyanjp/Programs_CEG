@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+// Function to calculate factorial
+unsigned long long factorial(int n) {
+    if (n == 0)
+        return 1; // Factorial of 0 is 1
+    else
+        return n * factorial(n - 1); // Recursive call
+}
+
+int main() {
+    int number;
+    unsigned long long result;
+
+    // User input
+    printf("Enter a positive integer: ");
+    scanf("%d", &number);
+
+    // Check if the input is valid
+    if (number < 0) {
+        printf("Factorial is not defined for negative numbers.\n");
+    } else {
+        result = factorial(number);
+        printf("Factorial of %d = %llu\n", number, result);
+    }
+
+    return 0; // Exit the program
+}

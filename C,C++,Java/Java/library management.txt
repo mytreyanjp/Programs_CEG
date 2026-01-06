@@ -1,0 +1,259 @@
+Here is a complete Library Management System using JDBC for interacting with the database, Servlets, and AJAX for handling book borrowing, availability checking, and managing user sessions.
+1. Database Setup (MySQL)
+
+First, you need to set up your MySQL database. Create the following tables for books and borrowers.
+
+CREATE DATABASE library_system;
+
+USE library_system;
+
+CREATE TABLE books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    total_copies INT NOT NULL,
+    available_copies INT NOT NULL
+);
+
+CREATE TABLE borrowers (
+    borrower_id INT AUTO_INCREMENT PRIMARY KEY,
+    borrower_name VARCHAR(255) NOT NULL,
+    book_id INT NOT NULL,
+    borrow_date DATE NOT NULL,
+    return_date DATE,
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
+
+2. JDBC Setup (Database Connection)
+
+Create a class for JDBC connection. This class will handle the database connection.
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/library_system";
+    private static final String USER = "root";
+    private static final String PASSWORD = "password"; // Change to your MySQL password
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("JDBC Driver not found", e);
+        }
+    }
+}
+
+3. Book Class (Data Model)
+
+Define a Book model to represent the book entity.
+
+public class Book {
+    private int bookId;
+    private String title;
+    private String author;
+    private int totalCopies;
+    private int availableCopies;
+
+    // Getters and setters
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getTotalCopies() {
+        return totalCopies;
+    }
+
+    public void setTotalCopies(int totalCopies) {
+        this.totalCopies = totalCopies;
+    }
+
+    public int getAvailableCopies() {
+        return availableCopies;
+    }
+
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
+    }
+}
+
+4. Book DAO (Data Access Object)
+
+This class will handle the database operations for books, such as checking availability and borrowing books.
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookDAO {
+
+    public Book getBookById(int bookId) throws SQLException {
+        String query = "SELECT * FROM books WHERE book_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, bookId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Book book = new Book();
+                    book.setBookId(rs.getInt("book_id"));
+                    book.setTitle(rs.getString("title"));
+                    book.setAuthor(rs.getString("author"));
+                    book.setTotalCopies(rs.getInt("total_copies"));
+                    book.setAvailableCopies(rs.getInt("available_copies"));
+                    return book;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Book> getAllBooks() throws SQLException {
+        String query = "SELECT * FROM books";
+        List<Book> books = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Book book = new Book();
+                book.setBookId(rs.getInt("book_id"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setTotalCopies(rs.getInt("total_copies"));
+                book.setAvailableCopies(rs.getInt("available_copies"));
+                books.add(book);
+            }
+        }
+        return books;
+    }
+
+    public boolean borrowBook(int bookId) throws SQLException {
+        String updateBookQuery = "UPDATE books SET available_copies = available_copies - 1 WHERE book_id = ? AND available_copies > 0";
+        String insertBorrowerQuery = "INSERT INTO borrowers (borrower_name, book_id, borrow_date) VALUES (?, ?, ?)";
+        
+        try (Connection conn = DBConnection.getConnection()) {
+            conn.setAutoCommit(false);
+
+            // Update the book availability
+            try (PreparedStatement stmt = conn.prepareStatement(updateBookQuery)) {
+                stmt.setInt(1, bookId);
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected == 0) {
+                    conn.rollback();
+                    return false;  // Book not available
+                }
+            }
+
+            // Insert borrower record
+            String borrowerName = "Test User";  // In a real application, fetch from session
+            Date borrowDate = Date.valueOf("2024-11-14");  // In a real application, fetch from form
+            try (PreparedStatement stmt = conn.prepareStatement(insertBorrowerQuery)) {
+                stmt.setString(1, borrowerName);
+                stmt.setInt(2, bookId);
+                stmt.setDate(3, borrowDate);
+                stmt.executeUpdate();
+            }
+
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback();
+            return false;
+        }
+    }
+}
+
+5. BookServlet (Servlet for Handling Requests)
+
+Create a BookServlet to handle requests for borrowing books and checking availability.
+
+@WebServlet("/borrowBookServlet")
+public class BorrowBookServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int bookId = Integer.parseInt(request.getParameter("bookId"));
+
+        BookDAO bookDAO = new BookDAO();
+        boolean isSuccess = false;
+
+        try {
+            isSuccess = bookDAO.borrowBook(bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (isSuccess) {
+            response.getWriter().write("Book borrowed successfully.");
+        } else {
+            response.getWriter().write("Book is not available.");
+        }
+    }
+}
+
+@WebServlet("/checkAvailabilityServlet")
+public class CheckAvailabilityServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int bookId = Integer.parseInt(request.getParameter("bookId"));
+        BookDAO bookDAO = new BookDAO();
+
+        try {
+            Book book = bookDAO.getBookById(bookId);
+            if (book != null && book.getAvailableCopies() > 0) {
+                response.getWriter().write("Available copies: " + book.getAvailableCopies());
+            } else {
+                response.getWriter().write("No available copies for this book.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.getWriter().write("Error checking availability.");
+        }
+    }
+}
+
+6. Frontend (HTML + AJAX)
+
+You can use the same HTML + AJAX code from the previous example to handle the book borrowing and availability check. Make sure to adjust the AJAX URLs (borrowBookServlet and checkAvailabilityServlet) as per your servlet mappings.
+7. Session Management
+
+If you want to manage sessions for logged-in users, add session management to track user login status:
+
+// In your login servlet or any other relevant servlet
+HttpSession session = request.getSession();
+session.setAttribute("user", user);  // Save user object to session
+
+To check if the user is logged in:
+
+HttpSession session = request.getSession(false);
+if (session == null || session.getAttribute("user") == null) {
+    response.sendRedirect("login.jsp");
+} else {
+    // Proceed with the request
+}
+
+Conclusion
+
+This is a complete setup for a simple Library Management System using JDBC, Servlets, and AJAX. The code includes database interactions for borrowing books, checking book availability, and updating the database accordingly. You can extend this further with more functionalities, such as returning books, viewing borrowed books, and user authentication.

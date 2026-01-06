@@ -1,0 +1,133 @@
+Of course! Here are examples of some commonly used Standard Template Library (STL) containers and algorithms along with their functions:
+
+Containers:
+1. vector
+cpp
+Copy code
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    
+    // Adding elements
+    vec.push_back(6);
+    
+    // Accessing elements
+    std::cout << "First element: " << vec.front() << std::endl;
+    
+    // Iterating through elements
+    for (auto& num : vec) {
+        std::cout << num << " ";
+    }
+    
+    return 0;
+}
+2. map
+cpp
+Copy code
+#include <iostream>
+#include <map>
+
+int main() {
+    std::map<std::string, int> ages = {{"Alice", 30}, {"Bob", 25}, {"Charlie", 35}};
+    
+    // Inserting elements
+    ages["David"] = 28;
+    
+    // Accessing elements
+    std::cout << "Charlie's age: " << ages["Charlie"] << std::endl;
+    
+    // Iterating through elements
+    for (auto& pair : ages) {
+        std::cout << pair.first << " is " << pair.second << " years old." << std::endl;
+    }
+    
+    return 0;
+}
+3. set
+cpp
+Copy code
+#include <iostream>
+#include <set>
+
+int main() {
+    std::set<int> s = {3, 1, 4, 1, 5};
+    
+    // Inserting elements
+    s.insert(2);
+    
+    // Checking if an element exists
+    if (s.count(4) > 0) {
+        std::cout << "Element 4 exists in the set." << std::endl;
+    }
+    
+    // Iterating through elements
+    for (auto& num : s) {
+        std::cout << num << " ";
+    }
+    
+    return 0;
+}
+Algorithms:
+1. sort
+cpp
+Copy code
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    std::vector<int> vec = {3, 1, 4, 1, 5};
+    
+    // Sorting elements
+    std::sort(vec.begin(), vec.end());
+    
+    // Iterating through sorted elements
+    for (auto& num : vec) {
+        std::cout << num << " ";
+    }
+    
+    return 0;
+}
+2. find
+cpp
+Copy code
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    std::vector<int> vec = {3, 1, 4, 1, 5};
+    
+    // Finding an element
+    auto it = std::find(vec.begin(), vec.end(), 4);
+    
+    if (it != vec.end()) {
+        std::cout << "Element 4 found at index: " << std::distance(vec.begin(), it) << std::endl;
+    } else {
+        std::cout << "Element not found." << std::endl;
+    }
+    
+    return 0;
+}
+3. accumulate
+cpp
+Copy code
+#include <iostream>
+#include <vector>
+#include <numeric>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    
+    // Summing elements
+    int sum = std::accumulate(vec.begin(), vec.end(), 0);
+    
+    std::cout << "Sum of elements: " << sum << std::endl;
+    
+    return 0;
+}
+These examples cover some basic operations and functions of vectors, maps, sets, and some commonly used algorithms like sorting, finding, and accumulating. There are many more functions and algorithms available in the STL for various purposes.
+
+

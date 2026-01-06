@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Laptop",
+        "price": 799.99,
+        "description": "A high-performance laptop with 16GB RAM and 512GB SSD."
+    },
+    {
+        "name": "Smartphone",
+        "price": 599.99,
+        "description": "A sleek smartphone with a 6.5-inch display and 128GB storage."
+    },
+    {
+        "name": "Headphones",
+        "price": 129.99,
+        "description": "Noise-canceling headphones with a 20-hour battery life."
+    },
+    {
+        "name": "Smartwatch",
+        "price": 249.99,
+        "description": "A stylish smartwatch with fitness tracking and heart rate monitoring."
+    }
+]

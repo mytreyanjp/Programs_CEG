@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Form Validation</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Black background */
+            color: #f5c518; /* Gold text */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header styling */
+        h1 {
+            color: #f5c518; /* Gold text for header */
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        form {
+            background-color: #2a2a2a; /* Dark gray background */
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        label {
+            color: #f5c518; /* Gold label text */
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #f5c518; /* Gold border */
+            background-color: #121212; /* Black input background */
+            color: #f5c518; /* Gold text */
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4b400; /* Darker gold on focus */
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #f5c518; /* Gold background */
+            color: #121212; /* Black text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for buttons */
+        button:hover {
+            background-color: #d4b400; /* Darker gold on hover */
+        }
+
+        /* Error message styling */
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Form Validation</h1>
+
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="errorMessages" class="error"></div>
+
+    <script>
+        $(document).ready(function() {
+            $("#userForm").submit(function(event) {
+                event.preventDefault(); // Prevent form from submitting
+
+                // Clear previous error messages
+                $("#errorMessages").html("");
+
+                // Get form values
+                const name = $("#name").val().trim();
+                const email = $("#email").val().trim();
+                let isValid = true;
+
+                // Validate name
+                if (name === "") {
+                    $("#errorMessages").append("<p>Please enter your name.</p>");
+                    isValid = false;
+                }
+
+                // Validate email
+                if (email === "") {
+                    $("#errorMessages").append("<p>Please enter your email.</p>");
+                    isValid = false;
+                }
+
+                // Submit the form if valid
+                if (isValid) {
+                    $("#errorMessages").html("<p>Form submitted successfully!</p>");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

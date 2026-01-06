@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery DOM Manipulation</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Black background */
+            color: #f5c518; /* Gold text */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header styling */
+        h1 {
+            color: #f5c518; /* Gold text for header */
+            margin-bottom: 20px;
+        }
+
+        /* Highlight box styling */
+        .highlight {
+            padding: 20px;
+            border: 1px solid #f5c518; /* Gold border */
+            background-color: #2a2a2a; /* Dark gray background */
+            color: #f5c518; /* Gold text */
+            margin: 10px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #f5c518; /* Gold background */
+            color: #121212; /* Black text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for buttons */
+        button:hover {
+            background-color: #d4b400; /* Darker gold on hover */
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>jQuery DOM Manipulation</h1>
+    
+    <div class="highlight">
+        This is a highlight area.
+    </div>
+    
+    <button id="changeColor">Change Background Color</button>
+    <button id="addContent">Add Content</button>
+
+    <script>
+        $(document).ready(function() {
+            // Change background color on button click
+            $("#changeColor").click(function() {
+                $(".highlight").css("background-color", "black");
+            });
+
+            // Append new content on button click
+            $("#addContent").click(function() {
+                $(".highlight").append("<p>New content added to the highlight area!</p>");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<library>
+    <book>
+        <title>Brave New World</title>
+        <author>Aldous Huxley</author>
+        <year>1932</year>
+    </book>
+    <book>
+        <title>The Catcher in the Rye</title>
+        <author>J.D. Salinger</author>
+        <year>1951</year>
+    </book>
+    <book>
+        <title>The Hobbit</title>
+        <author>J.R.R. Tolkien</author>
+        <year>1937</year>
+    </book>
+    <book>
+        <title>Moby-Dick</title>
+        <author>Herman Melville</author>
+        <year>1851</year>
+    </book>
+    <book>
+        <title>Crime and Punishment</title>
+        <author>Fyodor Dostoevsky</author>
+        <year>1866</year>
+    </book>
+</library>

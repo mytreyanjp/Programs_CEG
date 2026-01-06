@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Cycle</title>
+    <style>
+        /* Body styling with gold and black theme */
+        body {
+            font-family: Arial, sans-serif;
+            color: #f5c518; /* Gold text color */
+            background-color: #121212; /* Black background */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #f5c518; /* Gold color for the heading */
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 10px 20px;
+            background-color: #f5c518; /* Gold button */
+            color: black;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #d4b400; /* Darker gold when hovering */
+        }
+    </style>
+</head>
+<body>
+    <h1>Press Spacebar to Enable/Disable Color Change</h1>
+    <p>Use Up/Down Arrow Keys to Change Background Color When Enabled</p>
+    <button onclick="resetBackground()">Reset Color</button>
+
+    <script>
+        // Array of colors to cycle through
+        const colors = ["#121212", "lightblue", "lightcoral", "lightgreen", "lightpink", "lightgoldenrodyellow"];
+        let colorIndex = 0; // Track the current color index
+        let colorChangeEnabled = false; // Track whether color changing is enabled
+
+        // Function to update the background color
+        function updateBackgroundColor() {
+            if (colorChangeEnabled) {
+                document.body.style.backgroundColor = colors[colorIndex];
+            }
+        }
+
+        // Reset the background color to black
+        function resetBackground() {
+            document.body.style.backgroundColor = "#121212"; // Set the color to black
+            colorIndex = 0; // Reset the color cycle to the first color
+        }
+
+        // Event listener for keydown event
+        document.addEventListener("keydown", function(event) {
+            // Toggle color changing on spacebar press
+            if (event.code === "Space") {
+                colorChangeEnabled = !colorChangeEnabled;
+                updateBackgroundColor(); // Update color immediately based on the current color index
+                if (colorChangeEnabled) {
+                    console.log("Color change enabled. Use Arrow Up/Down to cycle colors.");
+                } else {
+                    console.log("Color change disabled.");
+                }
+            }
+
+            // Cycle colors if color changing is enabled
+            if (colorChangeEnabled) {
+                if (event.code === "ArrowUp") {
+                    colorIndex = (colorIndex + 1) % colors.length; // Cycle forward
+                    updateBackgroundColor();
+                } else if (event.code === "ArrowDown") {
+                    colorIndex = (colorIndex - 1 + colors.length) % colors.length; // Cycle backward
+                    updateBackgroundColor();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

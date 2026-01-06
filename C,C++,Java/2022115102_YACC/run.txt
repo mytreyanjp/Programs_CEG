@@ -1,0 +1,13 @@
+Output:-
+Commands for execution
+
+Open a terminal
+Change your directory to the location of the file
+Run, yacc -d filename.y
+Run, cc y.tab.c y.tab.h
+An output file a.out is created.
+Run, ./a.out to execute the program.
+
+
+a+|b*|(b.c*)
+

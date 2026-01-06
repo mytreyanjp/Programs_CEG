@@ -1,0 +1,96 @@
+Overloading Functions:
+cpp
+Copy code
+#include <iostream>
+
+void print(int num) {
+    std::cout << "Integer: " << num << std::endl;
+}
+
+void print(double num) {
+    std::cout << "Double: " << num << std::endl;
+}
+
+int main() {
+    print(5);       // Calls the first function
+    print(3.14);    // Calls the second function
+    
+    return 0;
+}
+Overloading Operators:
+cpp
+Copy code
+#include <iostream>
+
+class Point {
+private:
+    int x, y;
+
+public:
+    Point(int x = 0, int y = 0) : x(x), y(y) {}
+
+    Point operator+(const Point& p) const {
+        return Point(x + p.x, y + p.y);
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Point& p);
+};
+
+std::ostream& operator<<(std::ostream& os, const Point& p) {
+    os << "(" << p.x << ", " << p.y << ")";
+    return os;
+}
+
+int main() {
+    Point p1(1, 2), p2(3, 4);
+    Point p3 = p1 + p2;
+    
+    std::cout << "p1: " << p1 << std::endl;
+    std::cout << "p2: " << p2 << std::endl;
+    std::cout << "p3: " << p3 << std::endl;
+
+    return 0;
+}
+Overloading Input and Output:
+cpp
+Copy code
+#include <iostream>
+
+class Complex {
+private:
+    double real, imag;
+
+public:
+    Complex(double real = 0.0, double imag = 0.0) : real(real), imag(imag) {}
+
+    friend std::ostream& operator<<(std::ostream& os, const Complex& c);
+    friend std::istream& operator>>(std::istream& is, Complex& c);
+};
+
+std::ostream& operator<<(std::ostream& os, const Complex& c) {
+    os << c.real << " + " << c.imag << "i";
+    return os;
+}
+
+std::istream& operator>>(std::istream& is, Complex& c) {
+    std::cout << "Enter real part: ";
+    is >> c.real;
+    std::cout << "Enter imaginary part: ";
+    is >> c.imag;
+    return is;
+}
+
+int main() {
+    Complex c1, c2;
+
+    std::cout << "Enter complex number c1:" << std::endl;
+    std::cin >> c1;
+
+    std::cout << "Enter complex number c2:" << std::endl;
+    std::cin >> c2;
+
+    std::cout << "c1: " << c1 << std::endl;
+    std::cout << "c2: " << c2 << std::endl;
+
+    return 0;
+}

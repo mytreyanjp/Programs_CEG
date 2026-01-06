@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<library>
+    <book>
+        <title>1984</title>
+        <author>George Orwell</author>
+        <genre>Dystopian</genre>
+    </book>
+    <book>
+        <title>Brave New World</title>
+        <author>Aldous Huxley</author>
+        <genre>Dystopian</genre>
+    </book>
+    <book>
+        <title>The Catcher in the Rye</title>
+        <author>J.D. Salinger</author>
+        <genre>Fiction</genre>
+    </book>
+    <book>
+        <title>Quantum Mechanics: The Theoretical Minimum</title>
+        <author>Leonard Susskind</author>
+        <genre>Science</genre>
+    </book>
+    <book>
+        <title>Sapiens: A Brief History of Humankind</title>
+        <author>Yuval Noah Harari</author>
+        <genre>Non-fiction</genre>
+    </book>
+</library>

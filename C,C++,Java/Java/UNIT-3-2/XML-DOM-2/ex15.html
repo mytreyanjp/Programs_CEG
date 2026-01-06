@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML DOM Parsing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #f5c518; /* Gold text */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5c518; /* Gold text */
+        }
+
+        button {
+            background-color: #f5c518; /* Gold background */
+            color: black;
+            font-size: 16px;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #d4b400; /* Darker gold on hover */
+        }
+
+        .book-list {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #1e1e1e; /* Dark gray background for the list */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-item {
+            background-color: #262626; /* Slightly lighter dark gray for each book */
+            padding: 15px;
+            border: 1px solid #f5c518; /* Gold border */
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .book-item h2 {
+            color: #f5c518; /* Gold title */
+        }
+
+        .book-item p {
+            color: #f5c518; /* Gold text for author and year */
+        }
+
+        .book-item p strong {
+            color: #e0a800; /* Slightly darker gold for strong labels */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Book List</h1>
+    <button onclick="loadBooks()">Load Books</button>
+    <div id="bookList" class="book-list"></div>
+
+    <script>
+        async function loadBooks() {
+            try {
+                // Fetch the XML data
+                const response = await fetch('books.xml');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, "application/xml");
+
+                // Extract book elements from XML
+                const books = xml.getElementsByTagName("book");
+                const bookList = document.getElementById('bookList');
+                
+                // Clear any existing content
+                bookList.innerHTML = "";
+
+                // Loop through each book and create a formatted div
+                Array.from(books).forEach(book => {
+                    const title = book.getElementsByTagName("title")[0].textContent;
+                    const author = book.getElementsByTagName("author")[0].textContent;
+                    const year = book.getElementsByTagName("year")[0].textContent;
+
+                    const bookItem = document.createElement('div');
+                    bookItem.className = "book-item";
+                    bookItem.innerHTML = `
+                        <h2>${title}</h2>
+                        <p><strong>Author:</strong> ${author}</p>
+                        <p><strong>Year:</strong> ${year}</p>
+                    `;
+                    bookList.appendChild(bookItem);
+                });
+            } catch (error) {
+                console.error("Error loading XML data:", error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX JSON Data Fetch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #f5c518; /* Gold text */
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #f5c518; /* Gold text */
+        }
+
+        button {
+            background-color: #f5c518; /* Gold background */
+            color: black;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #d4b400; /* Darker gold on hover */
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #1e1e1e; /* Dark gray background for table */
+            color: #f5c518; /* Gold text */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #f5c518; /* Gold border */
+            text-align: left;
+        }
+
+        th {
+            background-color: #333; /* Dark background for headers */
+        }
+
+        tr:nth-child(even) {
+            background-color: #262626; /* Darker rows for better readability */
+        }
+
+        tr:hover {
+            background-color: #444; /* Hover effect for rows */
+        }
+
+        tbody {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1>
+    <button onclick="fetchJSON()">Load Users</button>
+
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchJSON() {
+            try {
+                // Fetch the JSON data
+                const response = await fetch('users.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const users = await response.json();
+                const tableBody = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+                
+                // Clear any existing rows
+                tableBody.innerHTML = "";
+
+                // Loop through each user and create a row in the table
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.city}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching JSON data:", error);
+            }
+        }
+    </script>
+</body>
+</html>

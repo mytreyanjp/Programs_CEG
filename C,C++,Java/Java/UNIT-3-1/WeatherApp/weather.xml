@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<weatherData>
+    <city name="New York">
+        <temperature unit="Celsius">22</temperature>
+        <humidity>60</humidity>
+        <condition>Clear</condition>
+    </city>
+    <city name="Los Angeles">
+        <temperature unit="Celsius">28</temperature>
+        <humidity>50</humidity>
+        <condition>Sunny</condition>
+    </city>
+    <city name="Chicago">
+        <temperature unit="Celsius">18</temperature>
+        <humidity>70</humidity>
+        <condition>Cloudy</condition>
+    </city>
+    <city name="Miami">
+        <temperature unit="Celsius">30</temperature>
+        <humidity>80</humidity>
+        <condition>Humid</condition>
+    </city>
+</weatherData>

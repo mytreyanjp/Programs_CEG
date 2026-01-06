@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Black background */
+            color: #f5c518; /* Gold text */
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #f5c518; /* Gold */
+        }
+        #taskList {
+            margin-top: 20px;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #1e1e1e; /* Dark gray for tasks */
+            border: 1px solid #f5c518; /* Gold border */
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .task.completed {
+            text-decoration: line-through;
+            background: #424242; /* Darker gray for completed tasks */
+        }
+        button {
+            background: #f5c518; /* Red for delete button */
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-top:10px;
+        }
+        button:hover {
+            background: #a38106;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.5); /* Make checkbox larger */
+            cursor: pointer;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #f5c518; /* Gold border */
+            border-radius: 4px;
+            width: calc(100% - 22px); /* Adjust width */
+            margin-right: 10px;
+            background: #1e1e1e; /* Dark background */
+            color: #f5c518; /* Gold text */
+        }
+        input[type="text"]::placeholder {
+            color: #bbb; /* Light gray placeholder */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>To-Do List -DOM & Js</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <button id="addTaskButton">Add Task</button>
+
+    <div id="taskList"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
