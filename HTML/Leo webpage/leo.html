@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    animation-name: e;
+    animation-duration: 2s;
+  }
+
+  @keyframes e {
+    from {
+      width: 100%;
+      transform: rotate(0deg);
+    }
+
+    to {
+      width: 20%;
+      transform: rotate(360deg)
+    }
+  }
+
+  .loo {
+    background-color: transparent;
+    color: white;
+    border-radius: 4px;
+    font-family: verdana;
+    opacity: 1;
+    transition: 0.3s;
+    border: none;
+
+  }
+
+  .loo:hover {
+    opacity: 1;
+    color: black;
+    background-color: red;
+    box-shadow: 0 5px 15x #FF0404;
+  }
+
+  body {
+    text-align: center;
+    margin-top: 160px;
+overflow:hidden;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+</head>
+</style>
+
+<body style="background-image:url(https://i.gifer.com/7Lx5.gif);background-repeat:no-repeat;background-size:cover;background-color:black">
+
+  <audio id="audioval" loop>
+
+    <source src="https://pagaliworld.com/files/download/id/12858" type="audio/mpeg">
+    no support
+  </audio>
+
+  <img src="https://i.ibb.co/fvWffnG/download-removebg-preview.png" align="center">
+  <h1 style="color:white;font-family:verdana">WRITTEN AND DIRECTED BY</h1>
+  <a href="https://leovijay.w3spaces.com/leo_loki.html">
+
+    <p style="color:red;text-align:center;font-size:70px;  margin-top:-35px; text-shadow: 0 0 10px #7A0B0B, 0 0 20px #7A0B0B, 0 0 30px #7A0B0B, 0 0 40px #7A0B0B, 0 0 50px #7A0B0B, 0 0 60px #7A0B0B, 0 0 70px #7A0B0B;"><b>LOKESH KANAGARAJ</b></p>
+  </a>
+
+  <div style="font-family:Garamond" class="leo">
+    <p style="color:white;text-align:center;font-size:40px;  margin-top:-35px;"><b><a href="https://leovijay.w3spaces.com/leo_vijay.html" style="color:white">VIJAY </a>
+
+        - <a href="https://leovijay.w3spaces.com/leo_trisha.html">TRISHA </a>
+
+        -<a href="https://leovijay.w3spaces.com/leo_sd.html"> SANJAY DUTT </a></b>
+
+    </p>
+
+    <p style="color:white;text-align:center;font-size:20px;  margin-top:-35px;"><b><a href="https://leovijay.w3spaces.com/leo_gvm.html">GVM </a>-<a href="https://leovijay.w3spaces.com/leo_myss.html"> MYSSKIN </a>-<a href="https://leovijay.w3spaces.com/leo_ma.html">MANSOOR ALI</a> -<a href="https://leovijay.w3spaces.com/leo_sandy.html"> SANDY</a> - <a href="https://leovijay.w3spaces.com/leo_pa.html">PRIYA ANAND</a></b></p>
+ 
+</div>
+
+  <button type="button" onClick="Play()" class="loo" id="btn">PLAY</button>
+
+<p style="color:white;text-align:center;font-size:15px;  margin-top:10px;font-family:verdana"><b>(CLICK THE CASTING FOR MORE INFO)</b></p> 
+
+  <script type="text/javascript">
+    function Play() {
+      var myAudio = document.getElementById("audioval");
+      const btn = document.getElementById('btn');
+      if (myAudio.paused) {
+        myAudio.play();
+        btn.textContent = 'PAUSE';
+      } else {
+        myAudio.pause();
+        btn.textContent = 'PLAY';
+      }
+    }
+  </script>
+
+</body>
+
+</html>
